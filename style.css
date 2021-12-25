@@ -37,18 +37,22 @@ body {
   --clr-grayish-blue: hsl(229, 6%, 66%);
   --clr-very-light-gray: hsl(0, 0%, 98%);
 
+  --clr-shadow: hsl(212, 41%, 56%);
+
   font-family: "Poppins", sans-serif;
   background: var(--clr-very-light-gray);
 }
 
 .header {
   width: 90%;
-  margin: 5.75em auto 4.875em;
+  margin: 5.75em auto 4em;
   text-align: center;
 }
 
 .header__prose {
   color: var(--clr-grayish-blue);
+  margin: 0 auto;
+  max-width: 55ch;
 }
 
 .title {
@@ -58,15 +62,35 @@ body {
   margin-bottom: 0.575em;
 }
 
+@media (min-width: 900px) {
+  .title {
+    font-size: 2.375rem;
+  }
+}
+
 .title--bold {
   display: block;
   font-weight: bold;
 }
 
-.main, .card-column {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.main {
+  width: 88%;
+  max-width: 1110px;
+  margin: 0 auto 5em;
+}
+
+.main,
+.card-column {
+  display: grid;
+  gap: 1.875rem;
+}
+
+@media (min-width: 900px) {
+  .main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+  }
 }
 
 .main > *,
@@ -74,29 +98,56 @@ body {
   min-height: 13.85em;
 }
 
-.main {
-  width: 90%;
-  margin: 0 auto;
+@media (min-width: 900px) {
 }
 
 .card {
   background: white;
-  border-top: 4px solid var(--clr-cyan);
+  padding: 2em 1.75em;
   border-radius: 8px;
-  padding: 1.75em;
-  box-shadow: 0 10px 40px -15px var(--clr-grayish-blue);
+  box-shadow: 0 15px 35px -25px var(--clr-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--clr-red);
+  overflow: hidden;
+}
+
+.card--cyan::before {
+  background: var(--clr-cyan);
+}
+
+.card--orange::before {
+  background: var(--clr-orange);
+}
+
+.card--red::before {
+  background: var(--clr-red);
+}
+
+.card--blue::before {
+  background: var(--clr-blue);
 }
 
 .card__title {
   color: var(--clr-very-dark-blue);
   font-size: 1.375rem;
-  margin-bottom: 18px;
+  margin-bottom: 0.5em;
 }
 
 .card__prose {
   color: var(--clr-grayish-blue);
-  font-size: 0.9rem;
-  margin-bottom: 36px;
+  font-size: 0.85rem;
+  margin-bottom: 2.8em;
 }
 
 .card__image {
